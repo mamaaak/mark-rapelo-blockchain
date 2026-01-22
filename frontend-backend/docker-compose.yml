@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # Next.js Frontend & Backend
+  web3-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web3-token-app
+    ports:
+      - "3000:3000"
+    environment:
+      # Ethereum/Alchemy Configuration
+      - NEXT_PUBLIC_ALCHEMY_API_URL=${NEXT_PUBLIC_ALCHEMY_API_URL}
+      - ALCHEMY_API_URL=${ALCHEMY_API_URL}
+      - RPC_URL=${RPC_URL}
+      
+      # Supabase Configuration
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      
+      # Node Environment
+      - NODE_ENV=production
+      
+      # Cache Configuration
+      - CACHE_GAS_PRICE_TTL=${CACHE_GAS_PRICE_TTL:-30}
+      - CACHE_BLOCK_NUMBER_TTL=${CACHE_BLOCK_NUMBER_TTL:-10}
+    env_file:
+      - .env.local
+    restart: unless-stopped
+    networks:
+      - web3-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  web3-network:
+    driver: bridge
+
+# Optional: If you want to add Redis for caching in the future
+# redis:
+#   image: redis:7-alpine
+#   container_name: web3-redis
+#   ports:
+#     - "6379:6379"
+#   restart: unless-stopped
+#   networks:
+#     - web3-network
+#   command: redis-server --appendonly yes
+#   volumes:
+#     - redis-data:/data
+
+# Optional: Volume for Redis data persistence
+# volumes:
+#   redis-data:

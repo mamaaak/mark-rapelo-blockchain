@@ -1,0 +1,120 @@
+{
+  "info": {
+    "name": "Ethereum Wallet API",
+    "description": "API for fetching Ethereum wallet data with intelligent caching",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Wallet Endpoints",
+      "item": [
+        {
+          "name": "Get Wallet Data - Vitalik",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/wallet/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "wallet", "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"]
+            },
+            "description": "Fetch wallet data for Vitalik Buterin's address"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Wallet Data - Test Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/wallet/0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "wallet", "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]
+            },
+            "description": "Fetch wallet data for a test address"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Wallet Data - USDC Contract",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/wallet/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "wallet", "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"]
+            },
+            "description": "Fetch wallet data for USDC token contract"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/wallet/invalid-address",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "wallet", "invalid-address"]
+            },
+            "description": "Test error handling with invalid address"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Wallet Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/wallet/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "wallet", "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"]
+            },
+            "description": "Alternative POST method for fetching wallet data"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "System Endpoints",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            },
+            "description": "Check the health of Ethereum and Database services"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
