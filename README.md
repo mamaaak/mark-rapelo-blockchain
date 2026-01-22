@@ -19,6 +19,16 @@ This application consists of two main components:
    - Public minting functionality
    - Deployment scripts for Sepolia testnet
 
+## 📋 Deployed Contract Details
+
+**Network:** Sepolia Testnet
+
+**Contract Address:** `0x49d4a94E80FD4c13A7c2B4984620E00F5423EFE2`
+
+**Token Symbol:** T3T (Tier3Token)
+
+**Etherscan Link:** [View on Sepolia Etherscan](https://sepolia.etherscan.io/address/0x49d4a94E80FD4c13A7c2B4984620E00F5423EFE2)
+
 ## 🚀 Prerequisites
 
 ### Required Software
